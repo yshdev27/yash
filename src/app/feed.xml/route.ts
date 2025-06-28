@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import assert from 'assert'
 import { Feed } from 'feed'
 import fs from 'fs'
