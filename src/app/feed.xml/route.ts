@@ -1,7 +1,7 @@
 import assert from 'assert'
-import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
 import fs from 'fs'
+import matter from 'gray-matter'
 import path from 'path'
 
 export async function GET(req: Request) {
@@ -41,19 +41,16 @@ export async function GET(req: Request) {
     .map((dirent) => dirent.name)
 
   for (let id of articleIds) {
-    let url = String(new URL(`/articles/${id}`, req.url))
-    let html = await (await fetch(url)).text()
-    let $ = cheerio.load(html)
+    const filePath = path.join(articlesDir, id, 'page.mdx')
+    const fileContent = fs.readFileSync(filePath, 'utf8')
+    const { data, content } = matter(fileContent)
+
+    // Fallbacks if frontmatter is missing
+    const title = data.title || id
+    const date = data.date || new Date().toISOString()
+    const description = data.description || ''
 
     let publicUrl = `${siteUrl}/articles/${id}`
-    let article = $('article').first()
-    let title = article.find('h1').first().text()
-    let date = article.find('time').first().attr('datetime')
-    let content = article.find('[data-mdx-content]').first().html()
-
-    assert(typeof title === 'string')
-    assert(typeof date === 'string')
-    assert(typeof content === 'string')
 
     feed.addItem({
       title,
@@ -63,6 +60,7 @@ export async function GET(req: Request) {
       author: [author],
       contributor: [author],
       date: new Date(date),
+      description,
     })
   }
 
