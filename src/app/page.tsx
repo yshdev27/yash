@@ -1,7 +1,6 @@
 import Image, { type ImageProps } from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
@@ -210,11 +209,10 @@ function Resume() {
       start: '2022',
       end: '2022',
     },
-
-  
-
   
   ]
+
+  
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">

@@ -1,6 +1,8 @@
 import assert from 'assert'
 import * as cheerio from 'cheerio'
 import { Feed } from 'feed'
+import fs from 'fs'
+import path from 'path'
 
 export async function GET(req: Request) {
   let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -10,8 +12,8 @@ export async function GET(req: Request) {
   }
 
   let author = {
-    name: 'Spencer Sharp',
-    email: 'spencer@planetaria.tech',
+    name: 'Yash Gupta',
+    email: 'gyash21@gmail.com',
   }
 
   let feed = new Feed({
@@ -28,11 +30,15 @@ export async function GET(req: Request) {
     },
   })
 
-  let articleIds = require
-    .context('../articles', true, /\/page\.mdx$/)
-    .keys()
-    .filter((key) => key.startsWith('./'))
-    .map((key) => key.slice(2).replace(/\/page\.mdx$/, ''))
+  let articlesDir = path.join(process.cwd(), 'src/app/articles')
+  let articleIds = fs
+    .readdirSync(articlesDir, { withFileTypes: true })
+    .filter(
+      (dirent) =>
+        dirent.isDirectory() &&
+        fs.existsSync(path.join(articlesDir, dirent.name, 'page.mdx'))
+    )
+    .map((dirent) => dirent.name)
 
   for (let id of articleIds) {
     let url = String(new URL(`/articles/${id}`, req.url))
