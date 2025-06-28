@@ -32,3 +32,4 @@ export function Button({
     <Link className={className} {...props} />
   )
 }
+
