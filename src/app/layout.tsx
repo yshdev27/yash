@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     default:
       'Yash Gupta - Software Developer, UI insect, and part time cosmos enjoyer',
   },
+
+  icons: {
+    icon: '/favicon.ico',
+  },
   description:
     'Im Yash Gupta Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam quis culpa laboriosam quisquam aperiam, vero dignissimos fuga incidunt. Blanditiis consectetur ratione tenetur sed non molestiae optio, quidem incidunt nam repellendus?.',
   alternates: {
