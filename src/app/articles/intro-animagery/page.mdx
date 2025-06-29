@@ -1,7 +1,7 @@
 import { ArticleLayout } from "@/components/ArticleLayout";
 
 export const article = {
-  author: "Adam Wathan",
+  author: "Yash Gupta",
   date: "2025-06-07",
   title: "Introducing Animaginary: High performance web animations",
   description:
@@ -11,6 +11,18 @@ export const article = {
 export const metadata = {
   title: article.title,
   description: article.description,
+  openGraph: {
+    title: article.title,
+    description: article.description,
+    images: ["/article.png"],
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: article.title,
+    description: article.description,
+    images: ["/article.png"],
+  },
 };
 
 export default (props) => <ArticleLayout article={article} {...props} />;

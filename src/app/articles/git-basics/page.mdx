@@ -1,0 +1,112 @@
+import { ArticleLayout } from "@/components/ArticleLayout";
+
+export const article = {
+  author: "Yash Gupta",
+  date: "2025-06-29",
+  title: "Git Basics: Essential Commands Every Developer Should Know",
+  description:
+    "Git is the backbone of modern software development. Whether you're working solo or with a team, mastering these fundamental Git commands will streamline your workflow and make version control second nature.",
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+  openGraph: {
+    title: article.title,
+    description: article.description,
+    images: ["/article.png"], // Add your image path here
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: article.title,
+    description: article.description,
+    images: ["/article.png"],
+  },
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+Git is the backbone of modern software development. Whether you're working solo or with a team, mastering these fundamental Git commands will streamline your workflow and make version control second nature.
+
+Version control is essential for tracking changes, collaborating with others, and maintaining a clean project history. Let's dive into the core Git commands that every developer should have in their toolkit.
+
+```bash
+# Initialize a new Git repository
+git init
+
+# Clone an existing repository
+git clone https://github.com/username/repository.git
+
+# Check the status of your working directory
+git status
+```
+
+These commands form the foundation of Git usage. `git init` creates a new repository, `git clone` copies an existing one, and `git status` shows you what's happening in your current working directory.
+
+## Working with Changes
+
+The most common Git workflow involves adding, committing, and pushing changes. Here's how to handle your day-to-day operations:
+
+```bash
+# Add files to staging area
+git add filename.txt
+git add .  # Add all files
+
+# Commit your changes
+git commit -m "Add new feature"
+
+# Push changes to remote repository
+git push origin main
+```
+
+Understanding the staging area is crucial. Files go through three stages: working directory, staging area, and committed. The `git add` command moves files to staging, `git commit` saves them to your local repository, and `git push` uploads them to the remote repository.
+
+## Branching and Merging
+
+Branches allow you to work on different features simultaneously without affecting the main codebase. This is where Git truly shines:
+
+1. Create and switch branches
+2. Merge completed features
+3. Delete unnecessary branches
+4. Handle merge conflicts
+5. Keep your branch history clean
+
+```bash
+# Create a new branch
+git branch feature-branch
+
+# Switch to the branch
+git checkout feature-branch
+
+# Create and switch in one command
+git checkout -b new-feature
+
+# Merge branch back to main
+git checkout main
+git merge feature-branch
+```
+
+Branching strategies like Git Flow or GitHub Flow help teams coordinate their work. The key is to keep branches focused on single features or bug fixes.
+
+## Essential Status and History Commands
+
+Knowing what's happening in your repository is crucial for effective Git usage:
+
+```bash
+# View commit history
+git log --oneline
+
+# See differences in files
+git diff
+
+# Show specific commit details
+git show commit-hash
+
+# View remote repositories
+git remote -v
+```
+
+These commands help you understand your project's history and current state. The `git log` command is particularly powerful with various formatting options to display commit history exactly how you need it.
+
+Git mastery comes with practice, but these fundamental commands will handle 90% of your version control needs. Start with these basics, and gradually explore more advanced features like rebasing, stashing, and advanced merging strategies.
